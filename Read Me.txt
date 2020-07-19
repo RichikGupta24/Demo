@@ -1,0 +1,69 @@
+Download code from Git.
+
+# Swiggy API
+
+1. Create the API action methods based on the requirement.
+2. Create the model classes based on the requirement.
+3. Write down the code(using Repository pattern) to connect to Mongo DB and perform CRUD operation. 
+4. Write down the code to publish data in Kafka topic.
+5. Write down the code to subscribe the data from Kafka topic using BackgroundService.
+6. Create API GateWay and perform JWT Authentication.
+7. Create Docker file.
+8. Create image for Swiggy Api. Use command : docker build -t swiggyapi:v1 . 
+9. Create Kubernete manifest files for Swiggy Api, Mongo DB and Kafka.
+10. Update the yml files with container names, image names and ports.
+11. Run below commands to deploy the containers in Kubernete cluster.
+
+kubectl apply -f deployment-swiggyapi.yml
+kubectl apply -f service-swiggyapi.yml
+
+kubectl apply -f deployment-swiggydb.yml
+kubectl apply -f service-swiggydb.yml
+
+kubectl create -f zookeeper.yml
+kubectl create -f kafka-service.yml
+kubectl create -f kafka-broker.yml
+
+12. Test the API(s) from Swagger API.
+
+# Restaurant Partner API
+
+1. Create the API action methods based on the requirement.
+2. Create the model classes based on the requirement.
+3. Write down the code(using Repository pattern) to connect to Mongo DB and perform CRUD operation. 
+4. Write down the code to publish data in Kafka topic. 
+5. Write down the code to subscribe the data from Kafka topic using BackgroundService.
+6. Create Docker file.
+7. Create image for Restaurant Partner Api. Use command : docker build -t restaurantpartnerapi:v1 .
+8. Create deployment yml and service yml(Kubernete manifest files) for Restaurant Partner Api, Mongo DB.
+9. Update the yml files with container names, image names and ports.
+10. Run below commands to deploy the containers in Kubernete cluster.
+
+kubectl apply -f deployment-restaurantpartnerapi.yml
+kubectl apply -f service-restaurantpartnerapi.yml
+
+kubectl apply -f deployment-restaurantpartnerdb.yml
+kubectl apply -f service-restaurantpartnerdb.yml
+
+11. Test the API(s) from Swagger API.
+
+# Delivery Agent API
+
+1. Create the API action methods based on the requirement.
+2. Create the model classes based on the requirement.
+3. Write down the code(using Repository pattern) to connect to Mongo DB and perform CRUD operation. 
+4. Write down the code to publish data in Kafka topic. 
+5. Write down the code to subscribe the data from Kafka topic using BackgroundService.
+6. Create Docker file.
+7. Create image for Deliver Agent Api. Use command : docker build -t deliveryagentapi:v1 .
+8. Create deployment yml and service yml(Kubernete manifest files) for Delivery Agent Api, Mongo DB.
+9. Update the yml files with container names, image names and ports.
+10. Run below commands to deploy the containers in Kubernete.
+
+kubectl apply -f deployment-deliveryagentapi.yml
+kubectl apply -f service-deliveryagentapi.yml
+
+kubectl apply -f deployment-deliveryagentdb.yml
+kubectl apply -f service-deliveryagentdb.yml
+
+11. Test the API(s) from Swagger API.
