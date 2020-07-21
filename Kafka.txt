@@ -1,0 +1,215 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: TestDB
+    ports:
+      - 38000:27017
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper-container
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka-container
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ADVERTISED_PORT: "9092"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      
+
+
+
+--------------------------
+
+{
+  "MongoDB": {
+    "Host": "localhost",
+    "Port": "38000",
+    "Database": "TestDB",
+    "User": "root",
+    "Password": "example"
+  },
+
+  "producer": {
+    "bootstrapservers": "localhost:9092"
+  },
+  "consumer": {
+    "bootstrapservers": "localhost:9092", //specify your kafka broker address
+    "groupid": "test-consumer",
+    "enableautocommit": true,
+    "statisticsintervalms": 5000,
+    "sessiontimeoutms": 6000,
+    "autooffsetreset": 0,
+    "enablepartitioneof": true
+  },
+
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+-------------------------------------
+
+ var producerConfig = new ProducerConfig();
+            var consumerConfig = new ConsumerConfig();
+            Configuration.Bind("producer", producerConfig);
+            Configuration.Bind("consumer", consumerConfig);
+
+            services.AddSingleton<ProducerConfig>(producerConfig);
+            services.AddSingleton<ConsumerConfig>(consumerConfig);
+            services.AddHostedService<ProcessOrdersService>();
+
+-------------------------------------------
+
+using Confluent.Kafka;
+using System;
+using System.Threading;
+
+namespace TestAPI.Kafka
+{
+
+    public class ConsumerWrapper:IDisposable
+    {
+        private string _topicName;
+        private ConsumerConfig _consumerConfig;
+        private IConsumer<string, string> _consumer;
+        private static readonly Random rand = new Random();
+        public ConsumerWrapper(ConsumerConfig config, string topicName)
+        {
+            this._topicName = topicName;
+            this._consumerConfig = config;
+            this._consumer = new ConsumerBuilder<string, string>(this._consumerConfig).Build();
+            this._consumer.Subscribe(topicName);
+        }
+        public string readMessage()
+        {
+
+            var consumeResult = this._consumer.Consume();
+            return consumeResult.Message!=null ?consumeResult.Message.Value:null;
+
+        }
+
+        public void Dispose()
+        {
+            this._consumer = null;
+        }
+    }
+}
+
+-----------------------------------------------------
+
+using Confluent.Kafka;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace TestAPI.Kafka
+{
+    public class ProducerWrapper
+    {
+        private string _topicName;
+        private IProducer<string, string> _producer;
+        private ProducerConfig _config;
+        private static readonly Random rand = new Random();
+
+        public ProducerWrapper(ProducerConfig config, string topicName)
+        {
+            this._topicName = topicName;
+            this._config = config;
+            this._producer = new ProducerBuilder<string, string>(this._config).Build();
+            //this._producer.SetErrorHandler += (_, e) => {
+            //    Console.WriteLine("Exception:" + e);
+            //};
+        }
+        public async Task writeMessage(string message)
+        {
+            var dr = await _producer.ProduceAsync(this._topicName, new Message<string, string>()
+            {
+                Key = rand.Next(5).ToString(),
+                Value = message
+            });
+            _producer.Flush(TimeSpan.FromMilliseconds(10));
+            Console.WriteLine($"KAFKA => Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
+            return;
+        }
+    }
+}
+
+
+--------------------------------------------
+
+
+using Microsoft.Extensions.Hosting;
+using System.Threading;
+using System.Threading.Tasks;
+using System;
+using ShopPartner.Models;
+using Newtonsoft.Json;
+using Confluent.Kafka;
+using TestAPI.Kafka;
+
+namespace TestAPI.Kafka.Service
+{
+    public class ProcessOrdersService : BackgroundService
+    {
+        private readonly ConsumerConfig consumerConfig;
+        private readonly ProducerConfig producerConfig;
+        //private readonly ConsumerWrapper _consumer;
+        public ProcessOrdersService(ConsumerConfig consumerConfig, ProducerConfig producerConfig)
+        {
+            this.producerConfig = producerConfig;
+            this.consumerConfig = consumerConfig;            
+        }
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            Console.WriteLine("OrderProcessing Service Started");
+            await Task.Run(() => StartConsumer(stoppingToken));
+            //await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
+
+        }
+        private async Task StartConsumer(CancellationToken stoppingToken)
+        {
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                var consumer = new ConsumerWrapper(consumerConfig, "topicName");
+                string orderRequest = consumer.readMessage();
+                if (!string.IsNullOrWhiteSpace(orderRequest))
+                {
+                    //Deserilaize 
+                    CustomerOrder customerOrder = JsonConvert.DeserializeObject<CustomerOrder>(orderRequest);
+                }
+            }
+
+        }
+    }
+}
+
+
+---------------------------------------------------
+
+
+ <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.4.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.5.1" />
+  </ItemGroup>
