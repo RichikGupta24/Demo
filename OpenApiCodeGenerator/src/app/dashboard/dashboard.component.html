@@ -1,0 +1,84 @@
+<div class="wrapper">
+    <div class="d-flex justify-content-center header">
+        <span>Open API Code Generator</span>
+    </div>
+    <div class="body-content">
+
+        <!-- File upload section -->
+        <div class="d-flex justify-content-center mt-4 upload-section">
+            <div class="card">
+                <div class="card-header">
+                    Upload OpenApi File
+                </div>
+                <div class="card-body">
+                    <input class="file-input" type="file" id="file" (change)="handleFileInput($event.target.files)">
+                    <div class="d-flex justify-content-center btn-wrapper">
+                        <button type="button" class="btn btn-success upload-btn" [class.disable]="fileToUpload==null"
+                            [disabled]="fileToUpload==null" (click)="uploadFile()">UPLOAD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Api List -->
+        <div class="mt-5 px-2 animated fadeIn list-api" *ngIf="!!fileUploadSuccess">
+            <div class="mb-4 api-box">
+                <div class="mb-1 api-category">
+                    <span>Customer API</span>
+                </div>
+                <div class="api-collection">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="get api-type">GET</div>
+                            <span>api/v1/customer</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="get api-type">GET</div>
+                            <span>api/v1/customer/id</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="post api-type">POST</div>
+                            <span>api/v1/customer/add</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4 api-box">
+                <div class="mb-1 api-category">
+                    <span>Product API</span>
+                </div>
+                <div class="api-collection">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="get api-type">GET</div>
+                            <span>api/v1/product/id</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="post api-type">POST</div>
+                            <span>api/v1/product/add</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="put api-type">PUT</div>
+                            <span>api/v1/product/id</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="delete api-type">DELETE</div>
+                            <span>api/v1/product/id</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
