@@ -9,15 +9,24 @@ export class DropdownComponent implements OnInit {
 
   @Input() selected: any;
   @Input() items: any;
-  @Output() getProperty: EventEmitter<any> = new EventEmitter<any>();  
+  @Output() getProperty: EventEmitter<any> = new EventEmitter<any>();
+
+  selectedInputType: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.getTypeOfSeletecInput();
   }
 
-  selectedProperty(property: string, obj: any) {
-    this.getProperty.emit({ 'selectedVal': property, 'selectedObj': obj });
+  getTypeOfSeletecInput() {
+    this.selectedInputType = typeof this.selected;
+    console.log(this.selectedInputType);
+  }
+
+  selectedProperty(item: string, obj?: any) {
+    if (this.selectedInputType === 'object') this.getProperty.emit({ 'selectedVal': item, 'selectedObj': obj });
+    if (this.selectedInputType === 'string') this.getProperty.emit(item);
   }
 
 }

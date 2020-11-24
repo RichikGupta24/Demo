@@ -23,6 +23,16 @@
         font-size: 17px;
     }
     .body-content {
+        .action-template {
+            background: #e4e0e0;
+            padding: 5px 0px;
+            margin: 10px 0px;
+            .prop-txt {
+                margin-right: 15px;
+                min-width: 150px;
+                color: #350f0f;
+            }
+        }
         .property-wrapper {
             padding: 20px 15px;
             box-shadow: 1px 1.732px 14px 0px #999999;
@@ -50,7 +60,12 @@
         .submit-reset {
             .btn {
                 border-radius: 50px;
-                padding: 5px 30px;
+                padding: 5px 15px;
+                min-width: 100px;
+            }
+            .reset-btn {
+                background: #009688;
+                border: 1px solid #009688;
             }
         }
     }
@@ -59,17 +74,43 @@
         font-size: 15px;
         color: #797777;
     }
+}
 
-    .default-val-modal {
-        .modal-header {
-            padding: 5px 20px;
-            .close {
-                &:focus {
-                    outline: none;
-                }
+//modal
+.default-val-modal {
+    .modal-header {
+        padding: 5px 15px;
+        color: #751919;
+        .close {
+            &:focus {
+                outline: none;
             }
         }
-        .modal-body {
+    }
+    .modal-body {
+        .default-values {
+            background: #e4e0e0;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            .val {
+                min-width: 200px;
+            }
+            .form-check-input {
+                width: 18px;
+                height: 18px;
+                position: relative;
+                top: 4px;
+            }
+        }
+        .btn-footer {
+            border-top: 1px solid gray;
+            padding: 6px 20px 0px;
+            border-top: 1px solid #ece1e1;
+            .btn {
+                width: 200px;
+                border-radius: 2px;
+                padding: 5px 15px;
+            }
         }
     }
 }

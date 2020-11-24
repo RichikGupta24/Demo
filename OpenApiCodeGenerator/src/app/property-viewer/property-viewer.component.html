@@ -14,6 +14,11 @@
     </div>
     <div class="body-content">
         <div class="property-wrapper" *ngIf="!!propertyList">
+            <div class="d-flex action-template">
+                <span class="prop-txt">Template</span>
+                <cm-dropdown [items]="templateActionList" [selected]="selectedTemplateAction"
+                    (getProperty)="selectedDropdownValue($event)"></cm-dropdown>
+            </div>
             <div class="mb-3 prop" *ngFor="let property of propertyList">
                 <span class="prop-txt">{{property.name}}</span>
                 <cm-dropdown [items]="dropdownInputFieldList" [selected]="property"
@@ -28,7 +33,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5 submit-reset" *ngIf="!!propertyList">
-            <button type="button" class="btn btn-success mr-4 save-btn" (click)="save()">SAVE</button>
+            <button type="button" class="btn btn-success mr-4 save-btn" (click)="generate()">GENERATE</button>
             <button type="button" class="btn btn-secondary reset-btn" (click)="reset()">RESET</button>
         </div>
     </div>
@@ -49,9 +54,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" *ngIf="!!selectedObj">
-                <div class="default-values" *ngFor="let value of selectedObj">
-                    <div>{{value}}</div>
+            <div class="pb-2 modal-body" *ngIf="!!selectedObj">
+                <div class="d-flex align-items-center default-values" *ngFor="let obj of selectedObj">
+                    <div class="val">{{obj.value}}</div>
+                    <div class="p-0 m-0 form-group form-check">
+                        <input type="checkbox" class="m-0 form-check-input" id="check" [checked]="obj.checked">
+                        <!-- <label class="form-check-label" for="exampleCheck1">Select</label> -->
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center btn-footer">
+                    <button type="button" class="btn btn-success mr-4 save-btn"
+                        (click)="saveDefaultValue()">SAVE</button>
+                    <!-- <button type="button" class="btn btn-info mr-4 close-btn" data-dismiss="modal"
+                        aria-label="Close">CLOSE</button> -->
                 </div>
             </div>
         </div>

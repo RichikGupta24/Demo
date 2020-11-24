@@ -11,6 +11,8 @@ export class PropertyViewerComponent implements OnInit {
 
   propertyList: any;
   selectedObj: any;
+  selectedTemplateAction: string;
+  templateActionList: Array<string> = ['Create', 'Update', 'Delete'];
   dropdownInputFieldList: Array<string> = [
     "Text",
     "Password",
@@ -42,6 +44,7 @@ export class PropertyViewerComponent implements OnInit {
   }
 
   populatePropertyDetails() {
+    this.selectedTemplateAction = this.templateActionList[0];
     this.containerService.getApiProperties({ "apiId": this.activatedRoute.snapshot.paramMap.get('apiId') }).subscribe(
       resp => {
         this.propertyList = resp['propertyList'];
@@ -51,11 +54,16 @@ export class PropertyViewerComponent implements OnInit {
       });
   }
 
-  selectedDropdownValue(event: any) {
-    this.propertyList.map(item => {
-      if (item.id === event.selectedObj.id) item.selectedProp = event.selectedVal;
-    });
-    console.log(this.propertyList);
+  selectedDropdownValue(event) {
+    console.log();
+    if (typeof event === 'object') {
+      this.propertyList.map(item => {
+        if (item.id === event.selectedObj.id) item.selectedProp = event.selectedVal;
+      });
+    }
+    if (typeof event === 'string') {
+      this.selectedTemplateAction = event;
+    }
   }
 
   selectedObjDefaultValue(defaultValList: any) {
@@ -66,12 +74,16 @@ export class PropertyViewerComponent implements OnInit {
 
   }
 
-  save() {
+  generate() {
 
   }
 
   reset() {
     this.populatePropertyDetails();
+  }
+
+  saveDefaultValue() {
+
   }
 
   navigateToDashboard() {

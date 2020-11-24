@@ -23,8 +23,14 @@
             "name": "Gender",
             "selectedProp": "Radio",
             "defaultValue": [
-                "Male",
-                "Female"
+                {
+                    "value": "Male",
+                    "checked": true
+                },
+                {
+                    "value": "Female",
+                    "checked": true
+                }
             ]
         }
     ]
