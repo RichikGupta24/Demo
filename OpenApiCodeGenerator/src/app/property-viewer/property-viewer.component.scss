@@ -1,0 +1,75 @@
+.wrapper {
+    font-family: "Roboto";
+    .back {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        cursor: pointer;
+        svg {
+            font-size: 40px;
+            color: #ffffff;
+        }
+    }
+    .header {
+        background: #3f51b5;
+        padding: 15px 0px;
+        color: #ffffff;
+        font-size: 20px;
+    }
+    .sub-header {
+        background: #eeeeef;
+        padding: 10px 0px;
+        color: #310404;
+        font-size: 17px;
+    }
+    .body-content {
+        .property-wrapper {
+            padding: 20px 15px;
+            box-shadow: 1px 1.732px 14px 0px #999999;
+            margin: 10px auto;
+            max-width: 850px;
+            .prop {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                .prop-txt {
+                    margin-right: 15px;
+                    min-width: 150px;
+                    color: #350f0f;
+                }
+                .default-suggestion {
+                    .default-val {
+                        color: blue;
+                        cursor: pointer;
+                        margin-left: 30px;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+        .submit-reset {
+            .btn {
+                border-radius: 50px;
+                padding: 5px 30px;
+            }
+        }
+    }
+    .no-default-val {
+        margin-left: 30px;
+        font-size: 15px;
+        color: #797777;
+    }
+
+    .default-val-modal {
+        .modal-header {
+            padding: 5px 20px;
+            .close {
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        .modal-body {
+        }
+    }
+}

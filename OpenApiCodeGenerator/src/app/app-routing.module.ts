@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
+  {
+    path: 'property-viewer',
+    loadChildren: () => import('./property-viewer/property-viewer.module').then(m => m.PropertyViewerModule)
+  },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

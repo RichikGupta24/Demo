@@ -1,0 +1,31 @@
+{
+    "propertyList": [
+        {
+            "id": 143,
+            "name": "CustomerId",
+            "selectedProp": "Text",
+            "defaultValue": []
+        },
+        {
+            "id": 133,
+            "name": "FullName",
+            "selectedProp": "Text",
+            "defaultValue": []
+        },
+        {
+            "id": 163,
+            "name": "Email",
+            "selectedProp": "Email",
+            "defaultValue": []
+        },
+        {
+            "id": 173,
+            "name": "Gender",
+            "selectedProp": "Radio",
+            "defaultValue": [
+                "Male",
+                "Female"
+            ]
+        }
+    ]
+}
