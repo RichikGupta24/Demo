@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ export class DashboardComponent implements OnInit {
   fileToUpload: File = null;
   fileUploadSuccess: boolean;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +27,10 @@ export class DashboardComponent implements OnInit {
     //   console.log(error);
     // });
     this.fileUploadSuccess = true;
+  }
+
+  navigateToPropertyViewer(apiId: string) {
+    this.router.navigate(['/property-viewer', { apiId: apiId }]);
   }
 
 }

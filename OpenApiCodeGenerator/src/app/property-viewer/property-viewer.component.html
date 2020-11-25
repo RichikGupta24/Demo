@@ -1,0 +1,74 @@
+<div class="wrapper">
+    <div class="back">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-short" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg" (click)="navigateToDashboard()">
+            <path fill-rule="evenodd"
+                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+        </svg>
+    </div>
+    <div class="d-flex justify-content-center header">
+        <span>Open API Code Generator</span>
+    </div>
+    <div class="d-flex justify-content-center mb-3 sub-header">
+        <span>API Property Details</span>
+    </div>
+    <div class="body-content">
+        <div class="property-wrapper" *ngIf="!!propertyList">
+            <div class="d-flex action-template">
+                <span class="prop-txt">Template</span>
+                <cm-dropdown [items]="templateActionList" [selected]="selectedTemplateAction"
+                    (getProperty)="selectedDropdownValue($event)"></cm-dropdown>
+            </div>
+            <div class="mb-3 prop" *ngFor="let property of propertyList">
+                <span class="prop-txt">{{property.name}}</span>
+                <cm-dropdown [items]="dropdownInputFieldList" [selected]="property"
+                    (getProperty)="selectedDropdownValue($event)"></cm-dropdown>
+                <div class="default-suggestion"
+                    *ngIf="!!property.defaultValue && property.defaultValue.length > 0; else noDefaultVal">
+                    <span class="default-val" data-toggle="modal" data-target="#defaultVal"
+                        (click)="selectedObjDefaultValue(property.defaultValue)">Click to see default
+                        value</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-5 submit-reset" *ngIf="!!propertyList">
+            <button type="button" class="btn btn-success mr-4 save-btn" (click)="generate()">GENERATE</button>
+            <button type="button" class="btn btn-secondary reset-btn" (click)="reset()">RESET</button>
+        </div>
+    </div>
+    <ng-template #noDefaultVal>
+        <span class="no-default-val">Property doesn't have any default suggested value</span>
+    </ng-template>
+</div>
+
+
+<!-- Default options modal -->
+<div class="modal default-val-modal" id="defaultVal" tabindex="-1" role="dialog" aria-labelledby="defaultVal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered animated fadeIn">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultVal">Default Values</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="pb-2 modal-body" *ngIf="!!selectedObj">
+                <div class="d-flex align-items-center default-values" *ngFor="let obj of selectedObj">
+                    <div class="val">{{obj.value}}</div>
+                    <div class="p-0 m-0 form-group form-check">
+                        <input type="checkbox" class="m-0 form-check-input" id="check" [checked]="obj.checked">
+                        <!-- <label class="form-check-label" for="exampleCheck1">Select</label> -->
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center btn-footer">
+                    <button type="button" class="btn btn-success mr-4 save-btn"
+                        (click)="saveDefaultValue()">SAVE</button>
+                    <!-- <button type="button" class="btn btn-info mr-4 close-btn" data-dismiss="modal"
+                        aria-label="Close">CLOSE</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
