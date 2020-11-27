@@ -1,0 +1,110 @@
+using Microsoft.OpenApi.Readers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.IO;
+using System.Text;
+
+namespace Server.Controllers
+{
+    public class OpenApiController : ApiController
+    {
+        [HttpPost]
+        [Route("api/openapi")]
+        public List<OpenApi> GetOpenApi([FromBody] OpenApiData data)
+        {
+            var openApi = new List<OpenApi>();
+            OpenApiDiagnostic diagnostic = new OpenApiDiagnostic();
+            using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data.Data)))
+            {
+                var openApiDocument = new OpenApiStreamReader().Read(ms, out diagnostic);
+                foreach(var path in openApiDocument.Paths)
+                {
+                    foreach(var operations in path.Value.Operations)
+                    {
+                        var operation = new OpenApi()
+                        {
+                            Operation = path.Key,
+                            Verb = operations.Key.ToString()
+                        };
+
+                        foreach(var param in operations.Value.Parameters)
+                        {
+                            var p = new Parameter()
+                            {
+                                Name = param.Name,
+                                Type = param.Schema.Type
+                            };
+
+                            if(p.Type == "object")
+                            {
+                                p.properties = GetSchema(param.Schema, null)[0].properties;
+                            }
+                            operation.Param.Add(p);
+                        }
+                        openApi.Add(operation);
+                        //operation.Param = GetParams(operations.Value.Parameters.ToList());
+                    }
+                }
+            }
+
+            return openApi;
+        }
+
+        private List<Parameter> GetSchema(Microsoft.OpenApi.Models.OpenApiSchema schemas, string key)
+        {
+            var allparames = new List<Parameter>();
+            var p = new Parameter()
+            {
+                Name = key,
+                Type = schemas.Type
+            };
+
+            if (schemas.Type == "object")
+            {
+                foreach(var prop in schemas.Properties)
+                {
+                    p.properties.AddRange(GetSchema(prop.Value, prop.Key));
+                }    
+            }
+            allparames.Add(p);
+
+            return allparames;
+        }
+    }
+
+    public class OpenApiData
+    {
+        public string Data { get; set; }
+    }
+
+    public class OpenApi
+    {
+        public string Operation { get; set; }
+        public string Verb { get; set; }
+        public List<Parameter> Param { get; set; }
+
+        public OpenApi()
+        {
+            Param = new List<Parameter>();
+        }
+    }
+
+    public class Parameter
+    {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public List<string> Values { get; set; }
+        public bool IsRequired { get; set; }
+        public int Element { get; set; }
+        public List<Parameter> properties { get; set; }
+
+        public Parameter()
+        {
+            properties = new List<Parameter>();
+        }
+    }
+}
