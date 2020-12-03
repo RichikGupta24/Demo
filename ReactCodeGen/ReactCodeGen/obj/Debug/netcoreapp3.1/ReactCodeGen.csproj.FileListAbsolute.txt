@@ -18,3 +18,28 @@ C:\MyWork\WebAPI\ReactCodeGen\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\
 C:\MyWork\WebAPI\ReactCodeGen\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.dll
 C:\MyWork\WebAPI\ReactCodeGen\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.pdb
 C:\MyWork\WebAPI\ReactCodeGen\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.genruntimeconfig.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\ReactCodeGen.exe
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\ReactCodeGen.deps.json
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\ReactCodeGen.runtimeconfig.json
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\ReactCodeGen.runtimeconfig.dev.json
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\ReactCodeGen.dll
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.csprojAssemblyReference.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.AssemblyInfoInputs.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.AssemblyInfo.cs
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.RazorTargetAssemblyInfo.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\staticwebassets\ReactCodeGen.StaticWebAssets.Manifest.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\staticwebassets\ReactCodeGen.StaticWebAssets.xml
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.dll
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.genruntimeconfig.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\ReactCodeGen.pdb
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\YamlDotNet.NetCore.dll
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.csproj.CopyComplete
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.pdb
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.Readers.dll
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\bin\Debug\netcoreapp3.1\SharpYaml.dll
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.csproj.CoreCompileInputs.cache
+C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\ReactCodeGen\ReactCodeGen\obj\Debug\netcoreapp3.1\ReactCodeGen.MvcApplicationPartsAssemblyInfo.cache
