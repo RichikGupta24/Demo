@@ -84,7 +84,7 @@ namespace ReactCodeGen.Controllers
             var openApi = new OpenApiPath();
 
             OpenApiDiagnostic diagnostic = new OpenApiDiagnostic();
-           // var specData = new StreamReader(@"C:\Users\Naveen\Desktop\UI from Open API Doc\Petstore.yml").ReadToEnd();
+            //var specData = new StreamReader(@"C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\Petstore.yml").ReadToEnd();
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data.Data)))
             {
                 var openApiDocument = new OpenApiStreamReader().Read(ms, out diagnostic);
@@ -180,17 +180,18 @@ namespace ReactCodeGen.Controllers
             return openApi;
         }
 
-        private List<OpenApiOperationParam> GetBodyParam(Microsoft.OpenApi.Models.OpenApiSchema schema, string key, List<ParameterTree> tree, int node)
+        private List<OpenApiOperationParam> GetBodyParam(Microsoft.OpenApi.Models.OpenApiSchema schema, string key, List<ParameterTree> tree, int node, bool isReq=false)
         {
             var paramLst = new List<OpenApiOperationParam>();
             var param = new OpenApiOperationParam()
             {
                 Name = key,
                 Type = schema.Type,
-                Description = schema.Description
+                Description = schema.Description,
+                IsRequired = isReq
             };
 
-            if (schema.Enum != null)
+            if (schema.Enum != null && schema.Enum.Count>0)
             {
                 foreach (var val in schema.Enum)
                 {
@@ -210,21 +211,29 @@ namespace ReactCodeGen.Controllers
                 });
             }
 
-            if (schema.Properties != null)
+            if (schema.Properties != null && schema.Properties.Count>0)
             {
                 foreach (var prop in schema.Properties)
                 {
-                    param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, tree, node + 1));
+                    param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, tree, node + 1, schema.Required.Any(x => x.Equals(prop.Key))));
                 }
             }
 
             if (schema.Type == "array" && schema.Items != null)
             {
-                param.Type = schema.Items.Properties.Count == 0 ? "string" : "object"; // hard code
-
-                foreach (var prop in schema.Items.Properties)
+                //param.Type = schema.Items.Properties.Count == 0 ? "string" : "object"; // hard code
+                
+                if (schema.Items.Properties != null && schema.Items.Properties.Count > 0)
                 {
-                    param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, tree, node + 1));
+                    foreach (var prop in schema.Items.Properties)
+                    {
+                        param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, tree, node + 1, schema.Required.Any(x => x.Equals(key))));
+                    }
+                }
+                else
+                {
+                    param.Type = schema.Type;
+                    param.Type += " of " + schema.Items.Type;
                 }
             }
 
