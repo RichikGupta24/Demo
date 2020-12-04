@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  isMockService: true,
-  apiUrl: ''
+  isMockService: false,
+  apiUrl: 'http://localhost:51253/'
 };
 
 /*
