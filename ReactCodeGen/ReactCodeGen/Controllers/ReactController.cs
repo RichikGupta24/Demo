@@ -84,8 +84,8 @@ namespace ReactCodeGen.Controllers
             var openApi = new OpenApiPath();
 
             OpenApiDiagnostic diagnostic = new OpenApiDiagnostic();
-            var specData = new StreamReader(@"C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\Petstore.yml").ReadToEnd();
-            using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(specData)))
+            //var specData = new StreamReader(@"C:\Users\Naveen\Desktop\UI from Open API Doc\Demo\Petstore.yml").ReadToEnd();
+            using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data.Data)))
             {
                 var openApiDocument = new OpenApiStreamReader().Read(ms, out diagnostic);
                 foreach (var tag in openApiDocument.Tags)
