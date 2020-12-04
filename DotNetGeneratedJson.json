@@ -1,0 +1,1477 @@
+{
+    "tags": [
+        {
+            "tag": "pet",
+            "description": "Everything about your Pets",
+            "operations": [
+                {
+                    "name": "/pet",
+                    "verb": "Put",
+                    "id": "updatePet",
+                    "params": [],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "category",
+                            "type": "object",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": [
+                                {
+                                    "name": "id",
+                                    "type": "integer",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                },
+                                {
+                                    "name": "name",
+                                    "type": "string",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                }
+                            ]
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "photoUrls",
+                            "type": "array of string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "tags",
+                            "type": "array",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": [
+                                {
+                                    "name": "id",
+                                    "type": "integer",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                },
+                                {
+                                    "name": "name",
+                                    "type": "string",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                }
+                            ]
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "values": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ],
+                            "isRequired": false,
+                            "description": "pet status in the store",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "category",
+                            "type": "object",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "photoUrls",
+                            "type": "array",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "tags",
+                            "type": "array",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ]
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet",
+                    "verb": "Post",
+                    "id": "addPet",
+                    "params": [],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "category",
+                            "type": "object",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": [
+                                {
+                                    "name": "id",
+                                    "type": "integer",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                },
+                                {
+                                    "name": "name",
+                                    "type": "string",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                }
+                            ]
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "photoUrls",
+                            "type": "array of string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "tags",
+                            "type": "array",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": [
+                                {
+                                    "name": "id",
+                                    "type": "integer",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                },
+                                {
+                                    "name": "name",
+                                    "type": "string",
+                                    "values": [],
+                                    "isRequired": false,
+                                    "description": null,
+                                    "property": []
+                                }
+                            ]
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "values": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ],
+                            "isRequired": false,
+                            "description": "pet status in the store",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "category",
+                            "type": "object",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "photoUrls",
+                            "type": "array",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "tags",
+                            "type": "array",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 2,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ]
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet/findByStatus",
+                    "verb": "Get",
+                    "id": "findPetsByStatus",
+                    "params": [
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "values": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ],
+                            "isRequired": true,
+                            "description": "Status values that need to be considered for filter",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ]
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet/findByTags",
+                    "verb": "Get",
+                    "id": "findPetsByTags",
+                    "params": [
+                        {
+                            "name": "tags",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "Tags to filter by",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "tags",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet/{petId}",
+                    "verb": "Get",
+                    "id": "getPetById",
+                    "params": [
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "ID of pet to return",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet/{petId}",
+                    "verb": "Post",
+                    "id": "updatePetWithForm",
+                    "params": [
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "ID of pet that needs to be updated",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "Updated name of the pet",
+                            "property": []
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "Updated status of the pet",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet/{petId}",
+                    "verb": "Delete",
+                    "id": "deletePet",
+                    "params": [
+                        {
+                            "name": "api_key",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "Pet id to delete",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "api_key",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        },
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/pet/{petId}/uploadImage",
+                    "verb": "Post",
+                    "id": "uploadFile",
+                    "params": [
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "ID of pet to update",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [
+                        {
+                            "name": "additionalMetadata",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "Additional data to pass to server",
+                            "property": []
+                        },
+                        {
+                            "name": "file",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "file to upload",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        },
+                        {
+                            "name": "additionalMetadata",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "file",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                }
+            ]
+        },
+        {
+            "tag": "store",
+            "description": "Access to Petstore orders",
+            "operations": [
+                {
+                    "name": "/store/inventory",
+                    "verb": "Get",
+                    "id": "getInventory",
+                    "params": [],
+                    "bodyParams": [],
+                    "paramTree": [],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/store/order",
+                    "verb": "Post",
+                    "id": "placeOrder",
+                    "params": [],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "quantity",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "shipDate",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "values": [
+                                "placed",
+                                "approved",
+                                "delivered"
+                            ],
+                            "isRequired": false,
+                            "description": "Order Status",
+                            "property": []
+                        },
+                        {
+                            "name": "complete",
+                            "type": "boolean",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "petId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "quantity",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "shipDate",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "status",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": [
+                                "placed",
+                                "approved",
+                                "delivered"
+                            ]
+                        },
+                        {
+                            "name": "complete",
+                            "type": "boolean",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/store/order/{orderId}",
+                    "verb": "Get",
+                    "id": "getOrderById",
+                    "params": [
+                        {
+                            "name": "orderId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "ID of pet that needs to be fetched",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "orderId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/store/order/{orderId}",
+                    "verb": "Delete",
+                    "id": "deleteOrder",
+                    "params": [
+                        {
+                            "name": "orderId",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "ID of the order that needs to be deleted",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "orderId",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                }
+            ]
+        },
+        {
+            "tag": "user",
+            "description": "Operations about user",
+            "operations": [
+                {
+                    "name": "/user",
+                    "verb": "Post",
+                    "id": "createUser",
+                    "params": [],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "User Status",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/createWithArray",
+                    "verb": "Post",
+                    "id": "createUsersWithArrayInput",
+                    "params": [],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "User Status",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/createWithList",
+                    "verb": "Post",
+                    "id": "createUsersWithListInput",
+                    "params": [],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "User Status",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/login",
+                    "verb": "Get",
+                    "id": "loginUser",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "The user name for login",
+                            "property": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "The password for login in clear text",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/logout",
+                    "verb": "Get",
+                    "id": "logoutUser",
+                    "params": [],
+                    "bodyParams": [],
+                    "paramTree": [],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/{username}",
+                    "verb": "Get",
+                    "id": "getUserByName",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "The name that needs to be fetched. Use user1 for testing. ",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/{username}",
+                    "verb": "Put",
+                    "id": "updateUser",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "name that need to be updated",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": false,
+                            "description": null,
+                            "property": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "values": [],
+                            "isRequired": false,
+                            "description": "User Status",
+                            "property": []
+                        }
+                    ],
+                    "paramTree": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        },
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "firstName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "lastName",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        },
+                        {
+                            "name": "userStatus",
+                            "type": "integer",
+                            "node": 1,
+                            "position": "body",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                },
+                {
+                    "name": "/user/{username}",
+                    "verb": "Delete",
+                    "id": "deleteUser",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "values": [],
+                            "isRequired": true,
+                            "description": "The name that needs to be deleted",
+                            "property": []
+                        }
+                    ],
+                    "bodyParams": [],
+                    "paramTree": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "node": 1,
+                            "position": "query",
+                            "values": []
+                        }
+                    ],
+                    "server": [
+                        "https://petstore.swagger.io/v2",
+                        "http://petstore.swagger.io/v2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
