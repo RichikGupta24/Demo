@@ -11,7 +11,7 @@
                     Upload OpenApi File
                 </div>
                 <div class="card-body">
-                    <input class="file-input" type="file" id="file" (change)="handleFileInput($event.target.files)">
+                    <input class="file-input" type="file" id="file" (change)="handleFileInput($event)">
                     <div class="d-flex justify-content-center btn-wrapper">
                         <button type="button" class="btn btn-success upload-btn" [class.disable]="fileToUpload==null"
                             [disabled]="fileToUpload==null" (click)="uploadFile()">UPLOAD</button>
@@ -21,7 +21,29 @@
         </div>
 
         <!-- Api List -->
+
         <div class="mt-5 px-2 animated fadeIn list-api" *ngIf="!!fileUploadSuccess">
+            <ng-container *ngFor='let apiList of apiInfoList'>
+                <div class="mb-4 api-box">
+                    <div class="mb-1 api-category">
+                        <span>{{apiList.tag | uppercase}}: {{apiList.description}}</span>
+                    </div>
+                    <div class="api-collection">
+                        <div class="card" *ngFor="let operation of apiList.operations">
+                            <div class="card-body" (click)="navigateToPropertyViewer(operation)">
+                                <div class="api-type"
+                                    [ngClass]="{'get': operation.verb==='Get', 'post': operation.verb==='Post', 'put': operation.verb==='Put', 'delete': operation.verb==='Delete'}">
+                                    {{operation.verb}}</div>
+                                <span>{{operation.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+
+        <!-- <div class="mt-5 px-2 animated fadeIn list-api" *ngIf="!!fileUploadSuccess">
             <div class="mb-4 api-box">
                 <div class="mb-1 api-category">
                     <span>Customer API</span>
@@ -79,6 +101,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

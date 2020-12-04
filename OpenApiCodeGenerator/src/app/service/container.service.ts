@@ -12,5 +12,9 @@ export class ContainerService {
   getApiProperties(request: any) {
     return this.ds.getData(WebAPI.GET_API_PROPERTY, request);
   }
- 
+
+  getApiInfo(request: string) {
+    return this.ds.postData(WebAPI.GET_API_INFO, { data: request });
+  }
+
 }
