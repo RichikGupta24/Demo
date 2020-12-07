@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  isMockService: false,
+  isMockService: true,
   apiUrl: 'http://localhost:51253/'
 };
 

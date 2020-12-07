@@ -41,14 +41,20 @@ export class PropertyViewerComponent implements OnInit {
         this.response.ParamTree = tree;
         this.response.Project = '';
         this.response.Design = {};
+        this.response.Header = '';
+        this.response.Server = res['server'];
 
         for (let i = 0; i < tree.length; i++) {
           this.arritems.push({
             Name: (tree[i] as any).name,
             Type: (tree[i] as any).type,
             Node: (tree[i] as any).node,
+            Position: (tree[i] as any).position,
+            Values: (tree[i] as any).values,
             Selected: 0,
             Id: i
+            // Items: (tree[i] as any).Items,
+            // ObjectName: (tree[i] as any).ObjectName
           });
         }
 
@@ -77,6 +83,9 @@ export class PropertyViewerComponent implements OnInit {
           for (let i = 0; i < this.calcItems.length; i++) {
             for (let j = 0; j < this.calcItems[i].length; j++) {
               this.calcItems[i][j].Selected = 0;
+              for (let k = 0; k < this.calcItems[i][j].Items.length; k++) {
+                this.calcItems[i][j].Items[k].Selected = 0;
+              }
             }
           }
           (args.item as any).Selected = 1;
@@ -87,14 +96,42 @@ export class PropertyViewerComponent implements OnInit {
             Node: args.item.node,
             Id: args.item.Id,
             Selected: 1,
-            Control: 0,
+            Control: '0',
             Value: '',
             Required: false,
             Position: args.item.Position,
             Values: args.item.Values,
             Description: '',
-            Error: ''
+            Error: '',
+            Items: Array<any>(),
+            ObjectName: args.item.Position + '_' + args.item.ObjectName,
           }
+
+          for (let i = 0; i < args.item.length; i++) {
+            item.Items.push({
+              Name: args.item.Items[i].Name,
+              Level: args.item.Items[i].Name,
+              Type: args.item.Items[i].Type,
+              Node: args.item.Items[i].Node,
+              Id: args.item.Items[i].Id,
+              Selected: 0,
+              Control: '0',
+              Value: '',
+              Required: false,
+              Position: args.item.Items[i].Position,
+              Values: args.item.Items[i].Values,
+              Description: '',
+              Error: '',
+              ObjectName: args.item.Items[i].Position + '_' + args.item.Items[i].ObjectName,
+              Items: []
+            });
+          }
+
+          if (item.Type == 'array' && item.Items.length > 0) {
+            item.Selected = 0;
+            item.Items[0].Selected = 1;
+          }
+
           if (args.target.className == "t" || args.target.className == "x") {
             const index: number = Number(args.target.getAttribute("row"));
             this.calcItems.splice(index, 0, [item]);
@@ -111,7 +148,12 @@ export class PropertyViewerComponent implements OnInit {
             const index: number = Number(args.target.getAttribute("row"));
             this.calcItems[index].splice(1, 0, item);
           }
-          this.selectedItem = item;
+          if (item.Type == 'array' && item.Items.length > 0) {
+            this.selectedItem = item.Items[0];
+          }
+          else {
+            this.selectedItem = item;
+          }
           setTimeout(() => {
             if (this.selectedItem.Control == '0') {
               this.selectedItem.Control = (document.getElementById('controlDD') as HTMLSelectElement).options[0].getAttribute("value");
@@ -144,6 +186,9 @@ export class PropertyViewerComponent implements OnInit {
     for (let i = 0; i < this.calcItems.length; i++) {
       for (let j = 0; j < this.calcItems[i].length; j++) {
         this.calcItems[i][j].Selected = 0;
+        for (let k = 0; k < this.calcItems[i][j].Items.length; k++) {
+          this.calcItems[i][j].Items[k].Selected = 0;
+        }
       }
     }
     item.Selected = 1;
@@ -156,24 +201,44 @@ export class PropertyViewerComponent implements OnInit {
     console.log(this.calcItems);
   }
 
-  deleteItem(i: number, j: number, item: any) {
-    if (this.calcItems[i].length == 1) {
-      this.calcItems.splice(i, 1);
+  deleteItem(i: number, j: number, k: number, item: any) {
+    if (k == -1) {
+      if (this.calcItems[i].length == 1) {
+        this.calcItems.splice(i, 1);
+      }
+      else {
+        this.calcItems[i].splice(j, 1);
+      }
+      for (let index = 0; index < this.arritems.length; index++) {
+        if (item.Id == this.arritems[index].Id) {
+          this.arritems[index].Selected = 0;
+        }
+      }
     }
     else {
-      this.calcItems[i].splice(j, 1);
-    }
-
-    for (let index = 0; index < this.arritems.length; index++) {
-      if (item.Id == this.arritems[index].Id) {
-        this.arritems[index].Selected = 0;
+      item.Items.splice(k, 1);
+      if (item.Items.length == 0) {
+        if (this.calcItems[i].length == 1) {
+          this.calcItems.splice(i, 1);
+        }
+        else {
+          this.calcItems[i].splice(j, 1);
+        }
+        for (let index = 0; index < this.arritems.length; index++) {
+          if (item.Id == this.arritems[index].Id) {
+            this.arritems[index].Selected = 0;
+          }
+        }
       }
     }
     this.selectedItem = undefined;
   }
 
-  calcMargin(item: any) {
-    return item.node * 20;
+  calcMargin(item: any, type: number) {
+    if (type == 1) {
+      return (item.Node * 20) - 30;
+    }
+    return item.Node * 20;
   }
 
   openModal(template: TemplateRef<any>) {
@@ -182,13 +247,19 @@ export class PropertyViewerComponent implements OnInit {
 
   generateCode() {
     this.response.Design = this.calcItems;
-    // this.openApiService.GenCode(this.response).subscribe((res) => {
+    // this.openApiService.GenerateCode({
+    //   Header: this.response.Header,
+    //   Project: this.response.Project,
+    //   Server: this.response.Server,
+    //   Operation: this.model,
+    //   Design: this.calcItems
+    // }).subscribe((res) => {
     //   console.log(res);
     // });
   }
 
   preview() {
-    this.previewData = JSON.stringify({ Operation: this.router.getCurrentNavigation()?.extras.state, Design: this.calcItems });
+    this.previewData = JSON.stringify({ Header: this.response.Header, Operation: this.router.getCurrentNavigation()?.extras.state, Design: this.calcItems });
     setTimeout(() => {
       (document.getElementById("previewForm") as HTMLFormElement).submit();
     }, 100);
