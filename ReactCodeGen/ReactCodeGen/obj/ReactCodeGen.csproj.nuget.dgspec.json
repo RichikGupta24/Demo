@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj": {}
+    "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Richik's Demo\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj": {
+    "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Richik's Demo\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj",
+        "projectUniqueName": "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Richik's Demo\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj",
         "projectName": "ReactCodeGen",
-        "projectPath": "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj",
+        "projectPath": "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Richik's Demo\\Demo\\ReactCodeGen\\ReactCodeGen\\ReactCodeGen.csproj",
         "packagesPath": "C:\\Users\\Naveen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Demo\\ReactCodeGen\\ReactCodeGen\\obj\\",
+        "outputPath": "C:\\Users\\Naveen\\Desktop\\UI from Open API Doc\\Richik's Demo\\Demo\\ReactCodeGen\\ReactCodeGen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Naveen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.28, )"
+            },
             "Microsoft.OpenApi": {
               "target": "Package",
               "version": "[1.2.3, )"
@@ -45,6 +49,14 @@
             "Microsoft.OpenApi.Readers": {
               "target": "Package",
               "version": "[1.2.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
             },
             "YamlDotNet.NetCore": {
               "target": "Package",

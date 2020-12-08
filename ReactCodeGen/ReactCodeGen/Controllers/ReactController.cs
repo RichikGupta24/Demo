@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,7 @@ using Microsoft.OpenApi.Readers;
 using ReactCodeGen.BC;
 using ReactCodeGen.Entities;
 using ReactCodeGen.Models;
+using ReactCodeGen.Util;
 using YamlDotNet.Serialization;
 using static ReactCodeGen.Models.OpenApiModels;
 
@@ -77,6 +80,7 @@ namespace ReactCodeGen.Controllers
 
         #region Using Microsoft.OpenApi DLL
 
+        #region RetrieveApiInfo
         [HttpPost]
         [Route("/reactCodeGen/api/retrieveAPIInfo")]
         public OpenApiPath GetOpenApi([FromBody] Entities.OpenApi data)
@@ -135,7 +139,7 @@ namespace ReactCodeGen.Controllers
 
                             if (param.Schema.Type == "array")
                             {
-                                objparam.Type = "string"; // hard code
+                                //objparam.Type = "string"; // hard code
                                 foreach (var val in param.Schema.Items.Enum)
                                 {
                                     objparam.Values.Add((val as Microsoft.OpenApi.Any.OpenApiString).Value);
@@ -157,12 +161,29 @@ namespace ReactCodeGen.Controllers
                         if (operation.Value.RequestBody != null && operation.Value.RequestBody.Content.Count > 0)
                         {
                             var content = operation.Value.RequestBody.Content.FirstOrDefault();
-                            objOperation.BodyParams = GetBodyParam(content.Value.Schema, null, objOperation.ParamTree, 0)[0].Property;
+                            objOperation.BodyParams = GetBodyParam(content.Value.Schema, null,null, objOperation.ParamTree, 0)[0].Property;
                         }
 
                         foreach (var server in openApiDocument.Servers)
                         {
                             objOperation.Server.Add(server.Url);
+                        }
+
+                        if (objOperation.ParamTree.Count > 0)
+                        {
+                            var paramTree = objOperation.ParamTree.ToList();
+                            objOperation.ParamTree.Clear();
+                            foreach (var item in paramTree)
+                            {
+                                if (objOperation.ParamTree.Count > 0
+                                    && objOperation.ParamTree.Last().Type == "array"
+                                    && objOperation.ParamTree.Last().Node < item.Node)
+                                {
+                                    objOperation.ParamTree.Last().Items.Add(item);
+                                }
+                                else
+                                    objOperation.ParamTree.Add(item);
+                            }
                         }
 
                         if (operation.Value.Tags != null && operation.Value.Tags.Count > 0)
@@ -180,7 +201,7 @@ namespace ReactCodeGen.Controllers
             return openApi;
         }
 
-        private List<OpenApiOperationParam> GetBodyParam(Microsoft.OpenApi.Models.OpenApiSchema schema, string key, List<ParameterTree> tree, int node, bool isReq=false)
+        private List<OpenApiOperationParam> GetBodyParam(Microsoft.OpenApi.Models.OpenApiSchema schema, string key, string parentName, List<ParameterTree> tree, int node, bool isReq=false)
         {
             var paramLst = new List<OpenApiOperationParam>();
             var param = new OpenApiOperationParam()
@@ -205,6 +226,7 @@ namespace ReactCodeGen.Controllers
                 {
                     Name = param.Name,
                     Type = param.Type,
+                    ObjectName = parentName[0] == '_' ? parentName.Substring(1) : parentName,
                     Node = node,
                     Position = "body",
                     Values = param.Values
@@ -215,7 +237,7 @@ namespace ReactCodeGen.Controllers
             {
                 foreach (var prop in schema.Properties)
                 {
-                    param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, tree, node + 1, schema.Required.Any(x => x.Equals(prop.Key))));
+                    param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, string.Format("{0}_{1}", key, prop.Key), tree, node + 1, schema.Required.Any(x => x.Equals(prop.Key))));
                 }
             }
 
@@ -227,7 +249,7 @@ namespace ReactCodeGen.Controllers
                 {
                     foreach (var prop in schema.Items.Properties)
                     {
-                        param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, tree, node + 1, schema.Required.Any(x => x.Equals(key))));
+                        param.Property.AddRange(GetBodyParam(prop.Value, prop.Key, string.Format("{0}_{1}", key, prop.Key), tree, node + 1, schema.Required.Any(x => x.Equals(key))));
                     }
                 }
                 else
@@ -241,6 +263,27 @@ namespace ReactCodeGen.Controllers
 
             return paramLst;
         }
+        #endregion
+
+        #region Preview & Generate
+        [HttpPost]
+        [Route("api/preview")]
+        public HttpResponseMessage Preview([FromBody] Entities.OpenApi previewData)
+        {
+            Request request = Newtonsoft.Json.JsonConvert.DeserializeObject<Request>(previewData.Data);
+            var response = new HttpResponseMessage();
+            response.Content = new StringContent(PreviewUtil.PreviewHTML(request));
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            return response;
+        }
+
+        [HttpPost]
+        [Route("api/generate")]
+        public string Generate(Request request)
+        {
+            return GenerateUtil.GenerateReactCode(request);
+        }
+        #endregion
         #endregion
 
     }
